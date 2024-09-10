@@ -13,7 +13,7 @@ class NavBar extends StatefulWidget {
 
 class NavBarState extends State<NavBar> {
 
-  late List<Widget> Pages;
+  late List<Widget> pages;
 
   late HomeScreen homescreen;
 
@@ -24,9 +24,9 @@ class NavBarState extends State<NavBar> {
   @override
   void initState() {
     settings = Settings();
-    homescreen = HomeScreen();
+    homescreen = const HomeScreen();
     profile = Profile();
-    Pages = [homescreen,  profile, settings];
+    pages = [homescreen,  profile, settings];
     super.initState();
   }
 
@@ -53,7 +53,7 @@ class NavBarState extends State<NavBar> {
 
           Icon(Icons.settings, color: Colors.white,),
         ],),
-      body: Pages[currentTabIndex],
+      body: pages[currentTabIndex],
     );
   }
 }
