@@ -37,6 +37,12 @@ dependencies:
   #For choosing image
   image_picker: ^1.1.2
 
+  shared_preferences: ^2.3.2
+
+  switcher_button: ^0.0.4
+
+  provider: ^6.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
