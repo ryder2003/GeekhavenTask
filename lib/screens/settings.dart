@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:travelling_geeks_latest/modals/theme_provider.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   const Settings({super.key});
 
   @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text('Settings'),
       ),
@@ -14,7 +22,12 @@ class Settings extends StatelessWidget {
   }
 }
 
-class SettingsOptions extends StatelessWidget {
+class SettingsOptions extends StatefulWidget {
+  @override
+  State<SettingsOptions> createState() => _SettingsOptionsState();
+}
+
+class _SettingsOptionsState extends State<SettingsOptions> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -61,7 +74,12 @@ class SettingsOptions extends StatelessWidget {
 }
 
 // Dialog for Theme selection
-class ThemeDialog extends StatelessWidget {
+class ThemeDialog extends StatefulWidget {
+  @override
+  State<ThemeDialog> createState() => _ThemeDialogState();
+}
+
+class _ThemeDialogState extends State<ThemeDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -72,17 +90,17 @@ class ThemeDialog extends StatelessWidget {
           RadioListTile(
             title: Text('Light'),
             value: ThemeMode.light,
-            groupValue: ThemeMode.light,
+            groupValue: ThemeMode.dark,
             onChanged: (value) {
-              // Handle theme change
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
             },
           ),
           RadioListTile(
             title: Text('Dark'),
             value: ThemeMode.dark,
-            groupValue: ThemeMode.light, // Placeholder for current theme
+            groupValue: ThemeMode.light,
             onChanged: (value) {
-              // Handle theme change
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
             },
           ),
         ],
@@ -100,7 +118,12 @@ class ThemeDialog extends StatelessWidget {
 }
 
 // Dialog for Language selection
-class LanguageDialog extends StatelessWidget {
+class LanguageDialog extends StatefulWidget {
+  @override
+  State<LanguageDialog> createState() => _LanguageDialogState();
+}
+
+class _LanguageDialogState extends State<LanguageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

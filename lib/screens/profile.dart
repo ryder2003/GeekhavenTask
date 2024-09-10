@@ -7,6 +7,8 @@ class Profile extends StatefulWidget{
 class ProfileState extends State<Profile>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+    );
   }
 }
