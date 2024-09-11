@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travelling_geeks_latest/modals/theme_provider.dart';
 
+import '../features/themes.dart';
+
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -40,7 +42,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
           subtitle: Text('Light / Dark mode'),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () {
-            // Navigate to theme settings or show dialog
+            // Show theme selection dialog
             showDialog(
               context: context,
               builder: (context) {
@@ -58,7 +60,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
           subtitle: Text('Select App Language'),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
-            // Navigate to language settings or show dialog
+            // Show language selection dialog
             showDialog(
               context: context,
               builder: (context) {
@@ -80,6 +82,17 @@ class ThemeDialog extends StatefulWidget {
 }
 
 class _ThemeDialogState extends State<ThemeDialog> {
+  ThemeMode? _selectedThemeMode;
+
+  @override
+  void initState() {
+    super.initState();
+    // Set the initial theme based on the current theme provider value
+    _selectedThemeMode = Provider.of<ThemeProvider>(context, listen: false).themeData == lightmode
+        ? ThemeMode.light
+        : ThemeMode.dark;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -87,25 +100,42 @@ class _ThemeDialogState extends State<ThemeDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          RadioListTile(
+          RadioListTile<ThemeMode>(
             title: Text('Light'),
             value: ThemeMode.light,
-            groupValue: ThemeMode.dark,
+            groupValue: _selectedThemeMode,
             onChanged: (value) {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              setState(() {
+                _selectedThemeMode = value;
+              });
+              // Change to light mode
+              Provider.of<ThemeProvider>(context, listen: false).themeData = lightmode;
             },
           ),
-          RadioListTile(
+          RadioListTile<ThemeMode>(
             title: Text('Dark'),
             value: ThemeMode.dark,
-            groupValue: ThemeMode.light,
+            groupValue: _selectedThemeMode,
             onChanged: (value) {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              setState(() {
+                _selectedThemeMode = value;
+              });
+              // Change to dark mode
+              Provider.of<ThemeProvider>(context, listen: false).themeData = darkmode;
             },
           ),
         ],
       ),
       actions: [
+        TextButton(
+          child: Text('OK'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+
+        SizedBox(width: 80,),
+
         TextButton(
           child: Text('Cancel'),
           onPressed: () {
