@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travelling_geeks_latest/screens/nav.dart';
-import 'dart:io';
-
 import 'modals/theme_provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -22,6 +22,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const NavBar(),
       theme: Provider.of<ThemeProvider>(context).themeData,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en'),
+        const Locale('es')
+      ],
     );
   }
 }
