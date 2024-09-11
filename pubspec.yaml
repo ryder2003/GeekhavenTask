@@ -43,6 +43,9 @@ dependencies:
   #For curved navigation bar
   curved_navigation_bar: ^1.0.6
 
+  #For calender
+  table_calendar: ^3.1.2
+
   cached_network_image:
 
   #For choosing image
