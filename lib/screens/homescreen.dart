@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelling_geeks_latest/features/calender.dart';
 import 'package:travelling_geeks_latest/features/map.dart';
+import 'package:travelling_geeks_latest/features/packup_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,16 +14,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text('Travelling Geeks'),
+        leading: IconButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>PackupList()));
+            },
+            icon: Icon(Icons.pending_actions_sharp,size: 25,)),
+        title: Text('Travelling Geeks',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
         actions: [
           IconButton(
               onPressed: () {
                 _showCalendarDialog(context);
               },
-              icon: Icon(Icons.calendar_month_outlined))
+              icon: Icon(Icons.calendar_month_outlined,size: 25,))
         ],
       ),
       body: SingleChildScrollView(
@@ -35,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Search Destination',
+                  hintStyle: TextStyle(color: Colors.grey),
                   prefixIcon: Icon(Icons.search),
                   filled: true,
                   fillColor: Colors.white,
@@ -82,24 +89,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Navigate to flight booking page
                 },
                 icon: Icon(Icons.flight_takeoff),
-                label: Text('Book Flights'),
+                label: Text('Book Flights',),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.lightBlueAccent,
+                  elevation: 2
                 ),
               ),
               SizedBox(height: 20),
 
-              // Calendar Option Button
+              //  Hotel Booking option button
               ElevatedButton.icon(
-                onPressed: () {
-                  _showCalendarDialog(context);
-                },
-                icon: Icon(Icons.calendar_today),
-                label: Text('Choose Travel Dates'),
+                onPressed: () {},
+                icon: Icon(Icons.apartment),
+                label: Text('Book Hotels'),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.lightBlueAccent,
                 ),
               ),
             ],
