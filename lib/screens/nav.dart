@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:travelling_geeks_latest/features/map.dart';
 import 'package:travelling_geeks_latest/screens/homescreen.dart';
 import 'package:travelling_geeks_latest/screens/profile.dart';
 import 'package:travelling_geeks_latest/screens/settings.dart';
@@ -16,7 +17,7 @@ class NavBarState extends State<NavBar> {
   late List<Widget> pages;
 
   late HomeScreen homescreen;
-
+  late MapScreen map;
   late Settings settings;
   late Profile profile;
   int currentTabIndex=0;
@@ -25,8 +26,9 @@ class NavBarState extends State<NavBar> {
   void initState() {
     settings = Settings();
     homescreen = const HomeScreen();
+    map = MapScreen();
     profile = Profile();
-    pages = [homescreen,  profile, settings];
+    pages = [homescreen, map, profile, settings];
     super.initState();
   }
 
@@ -48,6 +50,8 @@ class NavBarState extends State<NavBar> {
         items: const [
 
           Icon(Icons.home_outlined, color: Colors.white,),
+
+          Icon(Icons.location_on,color: Colors.white,),
 
           Icon(Icons.person_outlined, color: Colors.white,),
 

@@ -52,11 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 20),
 
-              // Google Maps Placeholder Container (UI only)
-              Container(
-                height: 180,
-                child: MapScreen(), // Placeholder for Google Maps
-              ),
+              // Container for Google Maps (Flutter Maps)
+              // Container(
+              //   height: 300,
+              //   child: MapScreen(),
+              // ),
 
               SizedBox(height: 20),
 
