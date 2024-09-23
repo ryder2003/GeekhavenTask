@@ -1,5 +1,8 @@
 Tasks Completed :
 - Settings page to offer different settings regarding app
-- Theme Changing functionality in settings
-- Integrated map
+- Profile Page
+- Upload Profile Picture Option
+- dark/Light Mode Toggle functionality in settings (In settings)
 - Integrated in app Calender
+- Packing List
+- Map Integration
