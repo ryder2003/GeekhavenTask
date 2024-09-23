@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:travelling_geeks_latest/api/apis.dart';
 import 'package:travelling_geeks_latest/features/map.dart';
 import 'package:travelling_geeks_latest/screens/homescreen.dart';
 import 'package:travelling_geeks_latest/screens/profile.dart';
@@ -14,22 +15,31 @@ class NavBar extends StatefulWidget {
 
 class NavBarState extends State<NavBar> {
 
-  late List<Widget> pages;
-
+  late List<Widget> Pages;
   late HomeScreen homescreen;
   late MapScreen map;
   late Settings settings;
-  late Profile profile;
+  late ProfileScreen profile;
   int currentTabIndex=0;
-  //
+  bool _isInitialized = false; // Add a flag to track initialization
+
   @override
   void initState() {
-    settings = Settings();
-    homescreen = const HomeScreen();
-    map = MapScreen();
-    profile = Profile();
-    pages = [homescreen, map, profile, settings];
     super.initState();
+    // Initialize the user info and setup the screens
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    await APIs.getSelfInfo(); // Ensure APIs.me is initialized
+    setState(() {
+      homescreen = HomeScreen();
+      map = MapScreen();
+      settings = Settings();
+      profile = ProfileScreen(user: APIs.me,);
+      Pages = [homescreen, map, profile, settings];
+      _isInitialized = true; // Set the flag to true when initialization is complete
+    });
   }
 
 
@@ -57,7 +67,7 @@ class NavBarState extends State<NavBar> {
 
           Icon(Icons.settings, color: Colors.white,),
         ],),
-      body: pages[currentTabIndex],
+      body: Pages[currentTabIndex],
     );
   }
 }

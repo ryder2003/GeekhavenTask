@@ -1,11 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travelling_geeks_latest/screens/nav.dart';
+import 'package:travelling_geeks_latest/screens/splash_screen.dart';
+import 'firebase_options.dart';
 import 'modals/theme_provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
+//Global object for accessing Screen Size
+late Size mq;
+
+void main () async{
+  WidgetsFlutterBinding.ensureInitialized();
+  _initializeFirebase();
   runApp(ChangeNotifierProvider(
     create: (context) => ThemeProvider(),
       child: const MyApp()));
@@ -20,18 +26,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TravellingGeeks',
       debugShowCheckedModeBanner: false,
-      home: const NavBar(),
+      home: const SplashScreen(),
       theme: Provider.of<ThemeProvider>(context).themeData,
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      supportedLocales: [
-        const Locale('en'),
-        const Locale('es')
-      ],
     );
   }
+}
+_initializeFirebase() async{
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
