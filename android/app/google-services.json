@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "506277121373",
+    "project_id": "travellinggeeks-5e5a5",
+    "storage_bucket": "travellinggeeks-5e5a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506277121373:android:cdaed486eeeecb0ea9acb4",
+        "android_client_info": {
+          "package_name": "com.example.travelling_geeks_latest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcDWm77Sz5UF8IJ-i8jllNQdcMksgNK5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
