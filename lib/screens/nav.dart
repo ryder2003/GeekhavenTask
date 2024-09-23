@@ -17,7 +17,6 @@ class NavBarState extends State<NavBar> {
 
   late List<Widget> Pages;
   late HomeScreen homescreen;
-  late MapScreen map;
   late Settings settings;
   late ProfileScreen profile;
   int currentTabIndex=0;
@@ -34,10 +33,9 @@ class NavBarState extends State<NavBar> {
     await APIs.getSelfInfo(); // Ensure APIs.me is initialized
     setState(() {
       homescreen = HomeScreen();
-      map = MapScreen();
       settings = Settings();
       profile = ProfileScreen(user: APIs.me,);
-      Pages = [homescreen, map, profile, settings];
+      Pages = [homescreen, profile, settings];
       _isInitialized = true; // Set the flag to true when initialization is complete
     });
   }
@@ -47,26 +45,27 @@ class NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 70,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        color: Colors.black,
-        animationDuration: const Duration(milliseconds: 500),
-        onTap: (int index){
-          setState(() {
-            currentTabIndex = index;
-          });
-        },
-        items: const [
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: CurvedNavigationBar(
+          height: 70,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          color: Colors.black,
+          animationDuration: const Duration(milliseconds: 500),
+          onTap: (int index){
+            setState(() {
+              currentTabIndex = index;
+            });
+          },
+          items: const [
 
-          Icon(Icons.home_outlined, color: Colors.white,),
+            Icon(Icons.home_outlined, color: Colors.white,),
 
-          Icon(Icons.location_on,color: Colors.white,),
+            Icon(Icons.person_outlined, color: Colors.white,),
 
-          Icon(Icons.person_outlined, color: Colors.white,),
-
-          Icon(Icons.settings, color: Colors.white,),
-        ],),
+            Icon(Icons.settings, color: Colors.white,),
+          ],),
+      ),
       body: Pages[currentTabIndex],
     );
   }

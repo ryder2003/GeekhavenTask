@@ -64,6 +64,9 @@ dependencies:
   #For calender
   table_calendar: ^3.1.2
 
+  #For notifications
+  firebase_messaging: ^15.1.2
+
   #For using network image
   cached_network_image:
 
